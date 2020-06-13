@@ -19,9 +19,9 @@ describe(`E2E WelcomeScreen tests`, () => {
         />
     );
 
-    const welcomeBuuton = welcomeScreen.find(`button.welcome__button`);
+    const welcomeButton = welcomeScreen.find(`button.welcome__button`);
 
-    welcomeBuuton.simulate(`click`);
+    welcomeButton.simulate(`click`);
 
     expect(onWelcomeButtonClick).toHaveBeenCalledTimes(1);
   });
