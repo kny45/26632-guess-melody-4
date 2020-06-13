@@ -6,9 +6,12 @@ import WelcomeScreen from "../welcome-screen/welcome-screen.jsx";
 const App = (props) => {
   const {errorCount} = props;
 
+  const welcomeButtonClickHandler = () => {};
+
   return (
     <WelcomeScreen
       errorCount = {errorCount}
+      onWelcomeButtonClick = {welcomeButtonClickHandler}
     />
   );
 };
