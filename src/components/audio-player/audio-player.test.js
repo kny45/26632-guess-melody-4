@@ -10,6 +10,7 @@ describe(`Render AudioPlayer`, () => {
         <AudioPlayer
           isPlaying = {true}
           src = {mock}
+          onPlayButtonClick = {() => {}}
         />, {
           createNodeMock: () => {
             return {};
@@ -25,6 +26,7 @@ describe(`Render AudioPlayer`, () => {
         <AudioPlayer
           isPlaying = {false}
           src = {mock}
+          onPlayButtonClick = {() => {}}
         />, {
           createNodeMock: () => {
             return {};
