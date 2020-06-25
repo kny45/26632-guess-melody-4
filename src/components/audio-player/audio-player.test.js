@@ -10,7 +10,11 @@ describe(`Render AudioPlayer`, () => {
         <AudioPlayer
           isPlaying = {true}
           src = {mock}
-        />
+        />, {
+          createNodeMock: () => {
+            return {};
+          }
+        }
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
@@ -21,7 +25,11 @@ describe(`Render AudioPlayer`, () => {
         <AudioPlayer
           isPlaying = {false}
           src = {mock}
-        />
+        />, {
+          createNodeMock: () => {
+            return {};
+          }
+        }
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
