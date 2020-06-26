@@ -31,7 +31,6 @@ describe(`E2E ArtistQuestionScreen tests`, () => {
       ],
     }
   };
-
   const mockEvent = {
     preventDefault() {}
   };
@@ -47,6 +46,7 @@ describe(`E2E ArtistQuestionScreen tests`, () => {
     const screen = shallow(<ArtistQuestionScreen
       onAnswer={onAnswer}
       question={question}
+      renderPlayer={() => {}}
     />);
 
     const answerInputs = screen.find(`input`);
