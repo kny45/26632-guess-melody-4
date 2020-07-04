@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from "./app.jsx";
+import {App} from "./app.jsx";
 
 const questions = [
   {
@@ -39,15 +39,56 @@ const questions = [
 ];
 
 describe(`Render App`, () => {
-  it(`Should App render correctly`, () => {
-    const errorCount = 3;
+  const errorCount = 3;
 
+  it(`Render App with WelcomeScreen`, () => {
     const tree = renderer
       .create(
           <App
             errorCount = {errorCount}
             questions = {questions}
+            onUserAnswer = {() => {}}
+            onWelcomeButtonClick = {() => {}}
+            step = {-1}
           />)
+        .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`Render App with GenreQuestionScreen`, () => {
+    const tree = renderer
+      .create(
+          <App
+            errorCount = {errorCount}
+            questions = {questions}
+            onUserAnswer = {() => {}}
+            onWelcomeButtonClick = {() => {}}
+            step = {0}
+          />, {
+            createNodeMock: () => {
+              return {};
+            }
+          })
+        .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`Render App with ArtistQuestionScreen`, () => {
+    const tree = renderer
+      .create(
+          <App
+            errorCount = {errorCount}
+            questions = {questions}
+            onUserAnswer = {() => {}}
+            onWelcomeButtonClick = {() => {}}
+            step = {1}
+          />, {
+            createNodeMock: () => {
+              return {};
+            }
+          })
         .toJSON();
 
     expect(tree).toMatchSnapshot();

@@ -1,4 +1,4 @@
-import {reducer, ActionType} from "./reducer.js";
+import {reducer, ActionType, ActionCreator} from "./reducer.js";
 
 describe(`Reducer tests`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
@@ -53,6 +53,15 @@ describe(`Reducer tests`, () => {
     })).toEqual({
       step: -1,
       mistakes: 0,
+    });
+  });
+});
+
+describe(`Action creators work correctly`, () => {
+  it(`Action creator for incrementing step returns correct action`, () => {
+    expect(ActionCreator.incrementStep()).toEqual({
+      type: ActionType.INCREMENT_STEP,
+      payload: 1,
     });
   });
 });
