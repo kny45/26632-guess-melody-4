@@ -9,10 +9,12 @@ import GameScreen from "../game-screen/game-screen.jsx";
 import ArtistQuestionScreen from "../artist-question-screen/artist-question-screen.jsx";
 import GenreQuestionScreen from "../genre-question-screen/genre-question-screen.jsx";
 import {GameType} from "../../const.js";
-import withAudioPlayer from "../../hocs/with-audio-player/with-audio-player.jsx";
 
-const GenreQuestionScreenWrapped = withAudioPlayer(GenreQuestionScreen);
-const ArtistQuestionScreenWrapped = withAudioPlayer(ArtistQuestionScreen);
+import withActivePlayer from "../../hocs/with-active-player/with-active-player.jsx";
+import withUserAnswer from "../../hocs/with-user-answer/with-user-answer.jsx";
+
+const GenreQuestionScreenWrapped = withActivePlayer(withUserAnswer(GenreQuestionScreen));
+const ArtistQuestionScreenWrapped = withActivePlayer(ArtistQuestionScreen);
 
 class App extends PureComponent {
   _renderGameScreen() {
