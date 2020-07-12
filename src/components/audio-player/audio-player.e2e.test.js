@@ -8,36 +8,23 @@ Enzyme.configure({
 });
 
 describe(`E2E AudioPlayer tests`, () => {
-  const mockSrc = `path`;
-
   it(`When user click on PlayButton`, () => {
-    const initialState = {
-      progress: 0,
-      isLoading: true,
-      isPlaying: false,
-    };
-    const src = mockSrc;
     const onPlayButtonClick = jest.fn();
 
     const audioPlayer = shallow(
         <AudioPlayer
-          isPlaying = {initialState.isPlaying}
-          src = {src}
+          isPlaying = {false}
+          isLoading = {true}
           onPlayButtonClick = {onPlayButtonClick}
-        />,
-        {disableLifecycleMethods: true}
+        />
     );
-
-    expect(audioPlayer.state().isPlaying).toEqual(initialState.isPlaying);
 
     const playButton = audioPlayer.find(`button`);
 
     playButton.simulate(`click`);
     expect(onPlayButtonClick).toHaveBeenCalledTimes(1);
-    expect(audioPlayer.state().isPlaying).toEqual(!initialState.isPlaying);
 
     playButton.simulate(`click`);
     expect(onPlayButtonClick).toHaveBeenCalledTimes(2);
-    expect(audioPlayer.state().isPlaying).toEqual(initialState.isPlaying);
   });
 });
