@@ -16,7 +16,9 @@ describe(`E2E AudioPlayer tests`, () => {
           isPlaying = {false}
           isLoading = {true}
           onPlayButtonClick = {onPlayButtonClick}
-        />
+        >
+          <audio />
+        </AudioPlayer>
     );
 
     const playButton = audioPlayer.find(`button`);

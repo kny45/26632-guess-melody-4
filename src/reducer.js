@@ -13,6 +13,7 @@ const initialState = {
 const ActionType = {
   INCREMENT_MISTAKES: `INCREMENT_MISTAKES`,
   INCREMENT_STEP: `INCREMENT_STEP`,
+  RESET: `RESET`,
 };
 
 const isGenreAnswerCorrect = (question, userAnswer) => {
@@ -30,6 +31,7 @@ const ActionCreator = {
     type: ActionType.INCREMENT_STEP,
     payload: 1,
   }),
+
   incrementMistake: (question, userAnswer) => {
     let answerIsCorrect = false;
 
@@ -47,30 +49,30 @@ const ActionCreator = {
       payload: answerIsCorrect ? 0 : 1,
     };
   },
+
+  resetGame: () => {
+    return {
+      type: ActionType.RESET,
+      payload: null,
+    };
+  }
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.INCREMENT_STEP:
-      const nextStep = state.step + action.payload;
-
-      if (nextStep >= state.questions.length) {
-        return extend({}, initialState);
-      }
-
       return extend(state, {
-        step: nextStep,
+        step: state.step + action.payload,
       });
 
     case ActionType.INCREMENT_MISTAKES:
-      const newMistakes = state.mistakes + action.payload;
-
-      if (newMistakes >= state.maxMistakes) {
-        return extend({}, initialState);
-      }
-
       return extend(state, {
-        mistakes: newMistakes,
+        mistakes: state.mistakes + action.payload,
+      });
+
+    case ActionType.RESET:
+      return extend(initialState, {
+        step: 0,
       });
   }
 
